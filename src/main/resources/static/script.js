@@ -22,7 +22,7 @@ $(document).ready(function () {
             data: JSON.stringify({ url: urlValue }),
         })
             .done(function (data) {
-                var additionalText = "localhost:8080/my/";
+                var additionalText = data.originalUrl;
                 if (data.shortUrl === 'Not Found') {
                     additionalText = "";
                 }

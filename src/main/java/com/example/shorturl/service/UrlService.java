@@ -14,8 +14,12 @@ import java.net.URL;
 @Service
 public class UrlService {
 
-    @Autowired
-    private UrlRepository urlRepository;
+
+    private final UrlRepository urlRepository;
+
+    public UrlService(UrlRepository urlRepository) {
+        this.urlRepository = urlRepository;
+    }
 
     @Transactional
     public String save(UrlDTO urlDTO) {
@@ -43,15 +47,16 @@ public class UrlService {
       return urlRepository.getCount(url);
     }
     private String generateShortUrl() {
-        String shortUrl = RandomStringUtils.random(6, true, true);
-        while(urlRepository.checkShortUrl(shortUrl).isPresent()) {
-            shortUrl = RandomStringUtils.random(6, true, true);
-        }
+        String shortUrl;
+        do {
+             shortUrl = RandomStringUtils.random(6, true, true);
+        } while(urlRepository.checkShortUrl(shortUrl).isPresent());
         return shortUrl;
     }
 
 
     private boolean isWebsiteAvailable(String url) {
+
         try {
             URL siteURL = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) siteURL.openConnection();

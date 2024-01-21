@@ -29,7 +29,8 @@ public class ObjectURL {
     }
 
     public static ObjectURL of(UrlDTO urlDTO){
-        return new ObjectURL(urlDTO.getUrl(), urlDTO.getShortUrl(), urlDTO.getCount());
+        return new ObjectURL(urlDTO.getUrl(), urlDTO.getShortUrl(),
+                urlDTO.getCount());
     }
 
 }

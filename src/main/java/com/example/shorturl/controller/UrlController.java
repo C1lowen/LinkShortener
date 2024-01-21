@@ -16,8 +16,12 @@ import java.util.Map;
 
 @Controller
 public class UrlController {
-    @Autowired
-    private UrlService urlService;
+
+    private final UrlService urlService;
+
+    public UrlController(UrlService urlService) {
+        this.urlService = urlService;
+    }
 
     @GetMapping("/root")
     public String rootPage() {
