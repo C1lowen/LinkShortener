@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Optional;
 
 @Service
 public class UrlService {
@@ -34,7 +35,7 @@ public class UrlService {
     }
     @Transactional
     public String getUrl(String shortUrl){
-        var objectURL = urlRepository.findByShortUrl(shortUrl);
+        Optional<ObjectURL> objectURL = urlRepository.findByShortUrl(shortUrl);
         if(objectURL.isEmpty()) return null;
 
         var result= objectURL.get();
