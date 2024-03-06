@@ -18,7 +18,7 @@ jobs:
       # Label used to access the service container
       postgres:
         # Docker Hub image
-        image: postgres
+        image: postgres:15
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: postgres
@@ -40,7 +40,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-
       - name: Check out repository code
         uses: actions/checkout@v4
       # Performs a clean installation of all dependencies in the `package.json` file
