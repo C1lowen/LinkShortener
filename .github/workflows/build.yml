@@ -19,11 +19,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Install PostgreSQL
+      - name: Set up Docker Compose
         run: |
-          sudo apt-get update
-          sudo apt-get install postgresql
-          sudo service postgresql start
-          # Optionally, you can configure PostgreSQL here
+          sudo apt-get install -y docker-compose
+      - name: Start services with Docker Compose
+        run: docker-compose up -d
       - name: Build with Maven
         run: mvn clean install
+      - name: Stop services with Docker Compose
+        run: docker-compose down
