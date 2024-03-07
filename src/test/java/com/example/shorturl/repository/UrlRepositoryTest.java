@@ -1,6 +1,10 @@
 package com.example.shorturl.repository;
 
+import com.example.shorturl.ShortUrlApplication;
 import com.example.shorturl.model.ObjectURL;
+import com.example.shorturl.testcontainersconfig.PostgresTestContainer;
+import jakarta.transaction.Transactional;
+import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,15 +14,27 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-@DataJpaTest
+//@DataJpaTest
+@SpringBootTest
+//@ExtendWith(SpringExtension.class)
+
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class UrlRepositoryTest {
+class UrlRepositoryTest implements PostgresTestContainer {
+
     @Autowired
     private UrlRepository objectURLRepository;
 
@@ -26,6 +42,7 @@ class UrlRepositoryTest {
 
     @BeforeEach
     public void setupObjectURL(){
+        objectURLRepository.deleteAll();
         objectURL = new ObjectURL();
         objectURL.setUrl("testUrl");
         objectURL.setCount(1);
@@ -58,6 +75,7 @@ class UrlRepositoryTest {
     }
 
     @Test
+    @Transactional
     public void testSaveCount() {
         objectURLRepository.save(objectURL);
         Long expected = 2L;

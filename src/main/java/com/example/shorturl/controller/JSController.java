@@ -4,6 +4,7 @@ import com.example.shorturl.dto.UrlDTO;
 import com.example.shorturl.dto.UrlResponseDTO;
 import com.example.shorturl.service.UrlService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
@@ -12,14 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 public class JSController {
 
-    private final UrlService urlService;
     @Value("${path.domen.site}")
     private String originalUrl;
-    public JSController(UrlService urlService) {
-        this.urlService = urlService;
-    }
+
+    private final UrlService urlService;
 
     @PostMapping("/short")
     public UrlResponseDTO saveUrl(@RequestBody Map<String, String> data, Model model) {
