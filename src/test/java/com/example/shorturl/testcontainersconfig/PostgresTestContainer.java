@@ -3,15 +3,17 @@ package com.example.shorturl.testcontainersconfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
 public interface PostgresTestContainer {
-
     @Container
     PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:15");
+
+
 
     @DynamicPropertySource
     static void overrideProps(DynamicPropertyRegistry registry) {
