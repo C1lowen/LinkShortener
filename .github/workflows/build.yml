@@ -24,7 +24,7 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: c1lowen/testcicd2
+          image: c1lowen/testcicd
           tags: latest
           registry: docker.io
           dockerfile: Dockerfile
