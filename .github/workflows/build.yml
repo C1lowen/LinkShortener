@@ -41,7 +41,7 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
         with:
-          ruby-version: '1.127.0'
+          ruby-version: '2.7.0'
           bundler-cache: true
       - name: Run command on remote server
         uses: D3rHase/ssh-command-action@v0.2.2
