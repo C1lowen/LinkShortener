@@ -38,17 +38,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
-        with:
-          ruby-version: '2.7.0'
-          bundler-cache: true
       - name: Run command on remote server
         uses: D3rHase/ssh-command-action@v0.2.2
         with:
           host: ${{secrets.SSH_HOST}}
           user: ${{secrets.SSH_USER}}
-          private_key: ${{secrets.SSH_PRIVATE_KEY}}
+          private_key: ${{secrets.SSH_PUBLIC_KEY}}
           command: |
             sudo docker run hello-world
 
