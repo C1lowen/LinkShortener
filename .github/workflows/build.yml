@@ -43,7 +43,7 @@ jobs:
         with:
           host: ${{secrets.SSH_HOST}}
           user: ${{secrets.SSH_USER}}
-          private_key: ${{secrets.SSH_PUBLIC_KEY}}
+          private_key: ${{secrets.SSH_PRIVATE_KEY}}
           command: |
             sudo docker run hello-world
 
