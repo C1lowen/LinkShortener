@@ -38,13 +38,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - uses: D3rHase/ssh-command-action@v0.2.2
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{secrets.HOST}} # Remote server address / ip - required
-          port: ${{secrets.PORT}} # Remote server port -  Default: 22 - optional
-          user: ${{secrets.USER}} # Remote server user - required
-          private_key: ${{secrets.PRIVATE_KEY}} # Private ssh key registered on the remote server - required
-          host_fingerprint: ${{secrets.HOST_FINGERPRINT}} # Public ssh key fingerprint, viewable via ssh-keyscan -H $HOST -p $PORT - optional
-          command: echo 'hello world' # Command to be executed - Default: echo 'hello world' - optional
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USER }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: ${{ secrets.PORT }}
+            script: whoami
 
 
