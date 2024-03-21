@@ -38,8 +38,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Run command on remote server
-        uses: D3rHase/ssh-command-action@{version}
+      - uses: D3rHase/ssh-command-action@v0.2.2
         with:
           host: ${{secrets.HOST}} # Remote server address / ip - required
           port: ${{secrets.PORT}} # Remote server port -  Default: 22 - optional
