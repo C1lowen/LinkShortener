@@ -25,7 +25,7 @@ import java.util.Map;
 
 @WebMvcTest(JSController.class)
 public class JSControllerTest {
-//ds
+//dss
     @Value("${path.domen.site}")
     private String domen;
 
