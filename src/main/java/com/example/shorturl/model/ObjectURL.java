@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 @Entity(name = "urlservice")
 @Data
 public class ObjectURL {
+    //ds
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
