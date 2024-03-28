@@ -43,8 +43,12 @@ jobs:
           user: ${{secrets.SSH_USER}}
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
           command: |
-            echo '--- DOCKER STOPPED ALL CONTAINERS ---';
-            sudo docker stop $(docker ps -aq);
+            echo '--- DOCKER STOPPED STOP CONTAINERS ---';
+            sudo docker stop $(sudo docker ps -aq)
+            echo '--- DOCKER STOPPED DELETE CONTAINERS ---';
+            docker rm $(docker ps -aq);
+            echo '--- DOCKER STOPPED DELETE IMAGES ---';
+            docker rmi c1lowen/shorturt
             echo '--- DOCKER RUN CONTAINERS ---';
             sudo docker compose up -d;
 
