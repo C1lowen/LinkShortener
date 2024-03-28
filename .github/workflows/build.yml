@@ -45,7 +45,9 @@ jobs:
           user: ${{secrets.SSH_USER}}
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
           command: |
+            echo '--- DOCKER STOPPED ALL CONTAINERS ---'
             sudo docker stop $(docker ps -aq)
+            echo '--- DOCKER RUN CONTAINERS ---'
             sudo docker compose up
 
 
