@@ -24,7 +24,7 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: c1lowen/testcicd
+          image: c1lowen/shorturt
           tags: latest
           registry: docker.io
           dockerfile: Dockerfile
@@ -45,6 +45,7 @@ jobs:
           user: ${{secrets.SSH_USER}}
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
           command: |
-            ls -la
+            sudo docker stop $(docker ps -aq)
+            sudo docker compose up -d
 
 
